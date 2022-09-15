@@ -17,7 +17,8 @@
             const onClick = () => {
                 // modifier cause re-render automatically
                 // React.js re-render only changed elements of view
-                setCounter(counter + 1);
+                //setCounter(counter + 1);
+                setCounter((current) => current+1);   // more safe way to avoid side effect
             };
             return(
                 <div>
@@ -29,6 +30,8 @@
         
         // ReactDom view renderer
         ReactDOM.render(<App />, root);
+
+
 
     </script>
 </html>
