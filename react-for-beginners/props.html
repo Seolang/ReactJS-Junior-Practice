@@ -8,7 +8,8 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
 
-        const Btn = ({msg, font}) => {
+        const Btn = ({msg, onClick}) => {
+            console.log(msg + " was rendered")
             return (
                 <button
                     style={{
@@ -17,19 +18,28 @@
                             padding:"10px 20px",
                             border: 0,
                             borderRadius: 10,
-                            fontSize: font ? 20 : 15
                         }}
-                    >
-                        {msg}
-                    </button>
+                    onClick={onClick}
+                >
+                    {msg}
+                </button>
             );
         }
 
+        // memo tells component do not re-render itself unless props are changed.
+        const MemorizedBtn = React.memo(Btn);
+
         const App = () => {
+            const [value, setValue] = React.useState("Save Changes");
+            const changeValue = () => {
+                setValue("Revert Changes")
+            }
             return(
+                // custom component parameters can be sent by props
+                // from primitive types to function
                 <div>
-                    <Btn msg="Save Changes" font={true}/>
-                    <Btn msg="Continue"/>
+                    <MemorizedBtn msg={value} onClick={changeValue} />
+                    <MemorizedBtn msg="Continue" />
                 </div>
             );
         }
