@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        const Btn = ({msg, font}) => {
+            return (
+                <button
+                    style={{
+                            backgroundColor: "tomato",
+                            color:"white",
+                            padding:"10px 20px",
+                            border: 0,
+                            borderRadius: 10,
+                            fontSize: font ? 20 : 15
+                        }}
+                    >
+                        {msg}
+                    </button>
+            );
+        }
+
+        const App = () => {
+            return(
+                <div>
+                    <Btn msg="Save Changes" font={true}/>
+                    <Btn msg="Continue"/>
+                </div>
+            );
+        }
+        
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+
+    </script>
+</html>
