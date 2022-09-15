@@ -8,39 +8,27 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        /*
-        const span = React.createElement("h3", {
-            onMouseEnter: () => console.log("mouse enter"),
-        }, "Hello I'm a h3");
-        */
-
-        /* const btn = React.createElement("button", {
-            onClick: () => console.log("im clicked"),
-            style: {
-                backgroundColor: "tomato"
-            },
-        }, "Click me"); */
-
         // Custom function element in JSX must be Upper Case on their first alphabet!
         
-        let counter = 0;
-
-        const countUp = () => {
-            counter = counter+1;
-            reRender();
-        };
-
-        // React.js only re-render changed elements of view
-        const reRender = () => {
-            ReactDOM.render(<Container />, root);
-        }
-
-        const Container = () => (
+        const App = () => {
+            const data = React.useState(0);
+            // asign each array value to each variables
+            const [counter, setCounter] = data;
+            const onClick = () => {
+                // modifier cause re-render automatically
+                // React.js re-render only changed elements of view
+                setCounter(counter + 1);
+            };
+            return(
                 <div>
                     <h3>Total clicks : {counter}</h3>
-                    <button onClick={countUp}>Click me</button>
+                    <button onClick={onClick}>Click me</button>
                 </div>
-        );
-        reRender();
+            )
+        };
+        
+        // ReactDom view renderer
+        ReactDOM.render(<App />, root);
+
     </script>
 </html>
