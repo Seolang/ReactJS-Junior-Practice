@@ -8,8 +8,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
       
-    
-        const App = () => {
+        const MinutesToHours = () => {
             const [amount, setAmount] = React.useState();
             const [flipped, setFlipped] = React.useState(false);
             const onChange = (event) => {
@@ -24,7 +23,6 @@
             return(
                 // JSX grammar className(class) and htmlFor(for)
                 <div>
-                    <h1 className = "hi">Super Converter</h1>
                     <div>
                         <label htmlFor="minutes">Minutes </label>
                         <input 
@@ -39,7 +37,7 @@
                     <div>
                         <label htmlFor="hours">Hours </label>
                         <input 
-                            value={flipped ? amount : Math.round(amount / 60)} 
+                            value={flipped ? amount : amount / 60} 
                             id="hours" 
                             placeholder="Hours" 
                             type="number"
@@ -48,8 +46,72 @@
                         />
                     </div>
                     <button onClick={reset}>Reset</button>
-                    <button onClick={onFlip}>Flip</button>
+                    <button onClick={onFlip}>{flipped ? "Turn back" : "Invert"}</button>
                 </div>
+            );
+        };
+
+        const KmToMiles = () => {
+            const [amount, setAmount] = React.useState();
+            const [flipped, setFlipped] = React.useState(false);
+            const onChange = (event) => {
+                setAmount(current => event.target.value);
+            }
+            const onFlip = () => {
+                reset();
+                setFlipped(current => !current);
+            }
+            const reset = () => setAmount(current => 0);
+
+            return (
+                <div>
+                    <div>
+                        <label htmlFor="minutes">Kilometers </label>
+                        <input 
+                            value={flipped ? amount*1.60934 : amount} 
+                            id="minutes"
+                            placeholder="Kilometers" 
+                            type="number"
+                            onChange={onChange}
+                            disabled={flipped === true}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="hours">Miles </label>
+                        <input 
+                            value={flipped ? amount : amount/1.60934} 
+                            id="hours" 
+                            placeholder="Miles" 
+                            type="number"
+                            disabled={flipped === false}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onFlip}>{flipped ? "Turn back" : "Invert"}</button>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [index, setIndex] = React.useState("-1");
+            const onSelect = (event) => {
+                setIndex(current => event.target.value);
+            };
+
+            return(
+                <div>
+                    <h1 className = "hi">Super Converter</h1>
+                    <select value={index} onChange={onSelect}>
+                        <option value="-1">Select your Unit</option>
+                        <option value="0">Minutes & Hours</option>
+                        <option value="1">Km & Miles</option>
+                    </select>
+                    {index === "-1" ? <h3>Select Your Unit</h3> : null}
+                    {index === "0" ? <MinutesToHours/> : null}
+                    {index === "1" ? <KmToMiles /> : null}
+                </div>
+                // when component rerendered, there's no infomation saved (even useStates)
             );
         };
         
