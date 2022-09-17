@@ -21,7 +21,7 @@ function App_2() {
   // search run only when keyword changes
   // watching states 'keyword'
   useEffect(() => {
-    if (keyword != "" && keyword.length > 5) {
+    if (keyword !== "" && keyword.length > 5) {
       console.log("I run when 'keyword' changes");
     }
   }, [keyword]);
@@ -64,14 +64,14 @@ const Hello = () => {
     return byeFn;
   }
 
-  //useEffect(hiFn, []);
+  useEffect(hiFn, []);
 
-  useEffect(() => {
-    console.log("hi");
-    return () => {
-      console.log("by");
-    };
-  },[])
+  // useEffect(() => {
+  //   console.log("hi");
+  //   return () => {
+  //     console.log("by");
+  //   };
+  // },[])
 
   return (
     <h1>Hello</h1>
