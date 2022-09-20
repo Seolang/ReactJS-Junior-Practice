@@ -14,8 +14,8 @@ const MovieApp = () => {
         {/* react-router-dom@6.x.x replace Switch with Routes */}
         <Routes>
             <Route path="/hello" element={<h1>Hello</h1>} />
-            <Route path="/" element={<Home />} />
-            <Route path="/movie/:id" element={<Detail />} />
+            <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
+            <Route path={`${process.env.PUBLIC_URL}/movie/:id`} element={<Detail />} />
         </Routes>
    </Router>
    );
