@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import MovieDetail from "../components/MovieDetail";
 
 
 const Detail = () => {
@@ -17,13 +18,16 @@ const Detail = () => {
 
     useEffect(() => {
         getMovie(id);
-        console.log(`useEffect activated`);
+        //console.log(`useEffect activated`);
     },[])
 
     console.log(movie);
 
-    
+    return (
+        <div>
+            <MovieDetail title={movie.title} year />
+        </div>
 
-    return <h1>{movie.title}</h1>
+    )
 }
 export default Detail;
