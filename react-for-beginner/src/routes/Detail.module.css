@@ -16,14 +16,17 @@
 .movie {
     padding: 50px;
     width: 80%;
-    padding-top: 70px;
+    padding-top: 30px;
 }
 
-@media screen and (max-width: 1090px) {
-    .movie {
-      width: 100%;
-      padding: 20px;
-      padding-top: 70px;
-    }
+.backbtn {
+    margin-bottom: 10px;
+    font-size: 30px;
 }
+
+.backbtn > * {
+    text-decoration: none;
+}
+
+
   

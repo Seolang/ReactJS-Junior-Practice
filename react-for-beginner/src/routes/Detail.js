@@ -34,6 +34,9 @@ const Detail = () => {
                 </div> 
             : (
                 <div className={styles.movie}>
+                    <h1 className={styles.backbtn}>
+                        <Link to={`${process.env.PUBLIC_URL}/`}>{"<- Back To List"}</Link>
+                    </h1>
                     <MovieDetail 
                         title={movie.title} 
                         year={movie.year}
