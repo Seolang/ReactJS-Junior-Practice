@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import MovieDetail from "../components/MovieDetail";
+import styles from "./Detail.module.css";
 
 
 const Detail = () => {
     // {} is object destructuring, on the other side [] is array destructuring
     const { id } = useParams();
     const [movie, setMovie] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const getMovie = async(id) => {
         const json = 
@@ -14,6 +16,7 @@ const Detail = () => {
                 .then(result => result.json());
         
         setMovie(json.data.movie);
+        setLoading(false);
     }; 
 
     useEffect(() => {
@@ -24,8 +27,24 @@ const Detail = () => {
     console.log(movie);
 
     return (
-        <div>
-            <MovieDetail title={movie.title} year />
+        <div className={styles.container}>
+            {loading ? 
+                <div className={styles.loader}>
+                    Loading...
+                </div> 
+            : (
+                <div className={styles.movie}>
+                    <MovieDetail 
+                        title={movie.title} 
+                        year={movie.year}
+                        description={movie.description_full}
+                        coverImg={movie.large_cover_image}
+                        runtime={movie.runtime}
+                        rating={movie.rating}
+                        genres={movie.genres}
+                    />
+                </div>
+            )}
         </div>
 
     )
